@@ -130,3 +130,14 @@ ShoppingList *lastShoppingList;
 }
 
 %end
+
+
+
+// disable Estimote beacon fetching
+%hook ESTRequestManager
+
+- (void)sendRequests {
+	%log;
+}
+
+%end
