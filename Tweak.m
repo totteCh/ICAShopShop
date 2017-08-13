@@ -2,6 +2,28 @@
 
 
 
+// prevent popular recipe categories from loading
+%hook RecipePuffsController
+
+- (void)fetchDataIncludingImages:(BOOL)arg1 {}
+- (void)fetchData {}
+
+%end
+
+
+
+%hook RecipesViewController
+
+- (id)createActivityIndicatorView {
+	UIActivityIndicatorView *activityIndicator = %orig;
+	activityIndicator.alpha = 0; // hide loading indicator
+	return activityIndicator;
+}
+
+%end
+
+
+
 @interface MenuItemsController: UITableViewController
 @end
 
