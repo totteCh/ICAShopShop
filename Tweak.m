@@ -44,6 +44,38 @@
 
 
 
+// disable menu offers carousel
+%hook MenuOffersPageViewController
+
+- (void)setCarouselItemsArray:(NSArray *)carouselItemsArray {}
+
+%end
+
+
+
+// push down placeholder image to make status bar readable
+@interface MenuOffersView : UIView
+@end
+
+%hook MenuOffersView
+
+- (void)styleMenuOffersView:(id)arg1 {
+	%orig;
+
+	CGRect frame = self.frame;
+	frame.size.height += 20;
+	self.frame = frame;
+
+	NSLayoutConstraint *imageXConstraint = (NSLayoutConstraint *)self.constraints[3];
+	imageXConstraint.constant = 20;
+
+	self.backgroundColor = [UIColor colorWithRed:0.937 green:0.173 blue:0.114 alpha:0.85];
+}
+
+%end
+
+
+
 @interface ShoppingList: NSManagedObject
 @end
 
