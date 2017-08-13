@@ -102,8 +102,14 @@ ShoppingList *lastShoppingList;
 
 
 
+@interface ShoppingListDetailsHeaderViewController: UIViewController
+@property(weak, nonatomic) UIToolbar *toolbar;
+@end
+
 @interface ShoppingListDetailsViewController: UIViewController
 @property(retain, nonatomic) ShoppingList *shoppingList;
+@property(retain, nonatomic) UIView *tableHeaderView;
+@property(retain, nonatomic) ShoppingListDetailsHeaderViewController *headerViewController;
 @end
 
 %hook ShoppingListDetailsViewController
@@ -113,6 +119,14 @@ ShoppingList *lastShoppingList;
 		self.shoppingList = lastShoppingList;
 	}
 	%orig;
+}
+
+- (void)showHeaderViewIfNeeded {
+	%orig;
+
+	// hide "Add a recipe" button
+	NSLayoutConstraint *heightConstraint = self.tableHeaderView.constraints[0];
+	heightConstraint.constant = self.headerViewController.toolbar.frame.size.height;
 }
 
 %end
