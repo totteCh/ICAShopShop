@@ -1,0 +1,9 @@
+Package: net.tottech.icashopshop
+Name: ICAShopShop
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Show last shopping list when opening ICA Handla
+Maintainer: Christoffer Henriksson
+Author: Christoffer Henriksson
+Section: Tweaks
